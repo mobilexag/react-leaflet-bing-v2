@@ -34,3 +34,4 @@ node_modules
 
 # my key file 
 key.txt
+package-lock.json
