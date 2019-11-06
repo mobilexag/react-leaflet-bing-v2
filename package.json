@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com:TA-Geoforce/react-leaflet-bing.git"
+    "url": "git+ssh://git@github.com:TA-Geoforce/react-leaflet-bing-v2.git"
   },
   "keywords": [
     "react-component",
@@ -31,9 +31,9 @@
   "author": "T.A. GEOFORCE <info@tageoforce.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/TA-Geoforce/react-leaflet-bing/issues"
+    "url": "https://github.com/TA-Geoforce/react-leaflet-bing-v2/issues"
   },
-  "homepage": "https://github.com/TA-Geoforce/react-leaflet-bing#readme",
+  "homepage": "https://github.com/TA-Geoforce/react-leaflet-bing-v2#readme",
   "dependencies": {
     "react-leaflet": "^2.5.0"
   },
