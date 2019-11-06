@@ -19,19 +19,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com:Charmatzis/react-leaflet-bing.git"
+    "url": "git+ssh://git@github.com:TA-Geoforce/react-leaflet-bing.git"
   },
   "keywords": [
+    "react-component",
     "react",
     "leaflet",
-    "bing"
+    "map",
+    "bing-maps"
   ],
-  "author": "Christos Charmatzis",
+  "author": "T.A. GEOFORCE <info@tageoforce.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Charmatzis/react-leaflet-bing/issues"
+    "url": "https://github.com/TA-Geoforce/react-leaflet-bing/issues"
   },
-  "homepage": "https://github.com/Charmatzis/react-leaflet-bing#readme",
+  "homepage": "https://github.com/TA-Geoforce/react-leaflet-bing#readme",
   "peerDependencies": {
     "leaflet": "^1.3.0",
     "prop-types": "^15.5.0",
