@@ -7,10 +7,11 @@ L.BingLayer = L.TileLayer.extend({
     style: ''
 	},
 
-	initialize: function (bing_key, options) {
+	initialize: function (bing_key, protocol, options) {
 		L.Util.setOptions(this, options);
 
 		this._bing_key = bing_key;
+		this._protocol = protocol;
 		this._url = null;
 		this._providers = [];
 		this.metaRequested = false;
@@ -37,30 +38,20 @@ L.BingLayer = L.TileLayer.extend({
 				.replace('{culture}', this.options.culture);
 	},
 
-	loadMetadata: function () {
+	loadMetadata: async function () {
 		if (this.metaRequested) return;
 		this.metaRequested = true;
-		var _this = this;
-		var cbid = '_bing_metadata_' + L.Util.stamp(this);
-		window[cbid] = function (meta) {
-			window[cbid] = undefined;
-			var e = document.getElementById(cbid);
-			e.parentNode.removeChild(e);
-			if (meta.errorDetails) {
-				console.log(meta.errorDetails);
-				return;
-			}
-			_this.initMetadata(meta);
-		};
-		var urlScheme = (document.location.protocol === 'file:') ? 'http' : document.location.protocol.slice(0, -1);
+		var urlScheme = this._protocol ? this._protocol: 'https';
 		var url = urlScheme + '://dev.virtualearth.net/REST/v1/Imagery/Metadata/'
-					+ this.options.type + '?include=ImageryProviders&jsonp=' + cbid +
+					+ this.options.type + '?include=ImageryProviders'+
 					'&key=' + this._bing_key + '&UriScheme=' + urlScheme + '&culture=' + this.options.culture + '&style=' + this.options.style;
-		var script = document.createElement('script');
-		script.type = 'text/javascript';
-		script.src = url;
-		script.id = cbid;
-		document.getElementsByTagName('head')[0].appendChild(script);
+		var res = await fetch(url);
+		var meta = await res.json();
+		if (meta.errorDetails) {
+			console.log(meta.errorDetails);
+			return;
+		}
+		this.initMetadata(meta);
 	},
 
 	initMetadata: function (meta) {
@@ -127,6 +118,6 @@ L.BingLayer = L.TileLayer.extend({
 	}
 });
 
-L.bingLayer = function (bing_key, options) {
-    return new L.BingLayer(bing_key, options);
+L.bingLayer = function (bing_key, protocol, options) {
+    return new L.BingLayer(bing_key, protocol, options);
 };
