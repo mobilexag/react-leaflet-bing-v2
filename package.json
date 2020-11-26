@@ -8,7 +8,7 @@
     "clean:lib": "rmdir /s ./lib",
     "compile:lib": "babel src --out-dir lib",
     "build:lib": "npm run compile:lib",
-    "build:dist": "webpack src/index.js dist/react-leaflet-bing.js & webpack -p src/index.js dist/react-leaflet-bing.min.js",
+    "build:dist": "webpack --mode development src/index.js -o dist/react-leaflet-bing.js & webpack --mode production src/index.js -o dist/react-leaflet-bing.min.js",
     "build": "npm run build:lib && npm run build:dist",
     "example": "webpack-dev-server --config ./example/webpack.config.js",
     "lint": "eslint ./src",

@@ -6,11 +6,12 @@ import {bingLayer} from './leaflet.bing';
 
 class BingLayer extends GridLayer {
   static propTypes = {
-    bingkey: PropTypes.string.isRequired
+    bingkey: PropTypes.string.isRequired,
+    protocol: PropTypes.oneOf(['http', 'https']),
   };
 
   createLeafletElement(props) {
-    return L.bingLayer(props.bingkey, this.getOptions(props));
+    return L.bingLayer(props.bingkey, props.protocol, this.getOptions(props));
   }
 }
 
